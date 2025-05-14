@@ -1,4 +1,4 @@
-// import styled from "styled-components";
+// import styled from 'styled-components';
 
 // const StyledTable = styled.div`
 //   border: 1px solid var(--color-grey-200);
@@ -9,7 +9,7 @@
 //   overflow: hidden;
 // `;
 
-// const CommonRow = styled.div`
+// const CommonRow = styled.div<{ columns: string }>`
 //   display: grid;
 //   grid-template-columns: ${(props) => props.columns};
 //   column-gap: 2.4rem;
