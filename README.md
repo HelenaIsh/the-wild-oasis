@@ -24,5 +24,5 @@ The main purpose of this project was to gain hands-on experience with:
 
 1.  CLone the repo and run `npm install`
 2.  Start the Vite dev server: `npm run dev`
-3.                   Open your browser at http://localhost:5173 (or the port shown in your terminal).
+3.                         Open your browser at http://localhost:5173 (or the port shown in your terminal).
 4.  Enter your name and order pizzas from menu
