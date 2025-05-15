@@ -1,3 +1,4 @@
+import type { CabinType } from '../features/cabins/CabinRow';
 import supabase from './supabase';
 
 export async function getCabins() {
@@ -13,6 +14,19 @@ export async function getCabins() {
 
 export async function deleteCabin(id: string) {
   const { data, error } = await supabase.from('cabins').delete().eq('id', id);
+  if (error) {
+    console.log(error);
+    throw new Error('Cabin could not be deleted');
+  }
+
+  return data;
+}
+
+export async function createCabin(newCabin: CabinType) {
+  const { data, error } = await supabase
+    .from('cabins')
+    .insert([newCabin])
+    .select();
   if (error) {
     console.log(error);
     throw new Error('Cabin could not be deleted');

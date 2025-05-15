@@ -50,6 +50,7 @@ export interface CabinType {
   regularPrice: number;
   discount: number;
   image: string;
+  description: string;
 }
 
 export default function CabinRow({ cabin }: { cabin: CabinType }) {
