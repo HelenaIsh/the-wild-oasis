@@ -21,14 +21,7 @@ export async function deleteCabin(id: string) {
 }
 
 export async function createEditCabin(newCabin: CreateCabin, id?: string) {
-  let imagePath = newCabin.image;
-  let imageName = '';
-
-  if (newCabin.image && typeof newCabin.image !== 'string') {
-    const image = newCabin.image?.[0];
-    imageName = `${Math.random()}-${image?.name}`.replaceAll('/', '');
-    imagePath = `${supabaseUrl}/storage/v1/object/public/cabin-images//${imageName}`;
-  }
+  const { imagePath, imageName } = getImage(newCabin.image);
 
   let query = await supabase.from('cabins');
 
@@ -63,4 +56,17 @@ export async function createEditCabin(newCabin: CreateCabin, id?: string) {
   }
 
   return data;
+}
+
+function getImage(image: CreateCabin['image']) {
+  let imagePath = image;
+  let imageName = '';
+
+  if (typeof image !== 'string') {
+    const imageToUpload = image?.[0];
+    imageName = `${Math.random()}-${imageToUpload?.name}`.replaceAll('/', '');
+    imagePath = `${supabaseUrl}/storage/v1/object/public/cabin-images//${imageName}`;
+  }
+
+  return { imagePath, imageName };
 }
