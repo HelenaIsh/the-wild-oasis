@@ -53,6 +53,15 @@ export interface CabinType {
   description: string;
 }
 
+export interface CreateCabin {
+  name: string;
+  maxCapacity: number;
+  regularPrice: number;
+  discount: number;
+  image: FileList;
+  description: string;
+}
+
 export default function CabinRow({ cabin }: { cabin: CabinType }) {
   const { id, name, maxCapacity, regularPrice, discount, image } = cabin;
   const queryClient = useQueryClient();
