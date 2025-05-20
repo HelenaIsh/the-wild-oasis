@@ -11,7 +11,13 @@ import type { CreateCabin, CabinType } from './CabinRow';
 import { useCreateCabin } from './useCreateCabin';
 import { useEditCabin } from './useEditCabin';
 
-function CreateCabinForm({ cabinToEdit }: { cabinToEdit?: CabinType }) {
+function CreateCabinForm({
+  cabinToEdit,
+  onCloseModal,
+}: {
+  cabinToEdit?: CabinType;
+  onCloseModal?: () => void;
+}) {
   const isEditSession = cabinToEdit && 'id' in cabinToEdit && !!cabinToEdit.id;
   const { register, handleSubmit, reset, getValues, formState } =
     useForm<CreateCabin>({
@@ -28,15 +34,28 @@ function CreateCabinForm({ cabinToEdit }: { cabinToEdit?: CabinType }) {
     if (isEditSession) {
       editCabin(
         { newCabinData: data, id: cabinToEdit.id },
-        { onSuccess: () => reset() }
+        {
+          onSuccess: () => {
+            reset();
+            onCloseModal?.();
+          },
+        }
       );
     } else {
-      createCabin(data, { onSuccess: () => reset() }); //{ ...data, image: data.image }
+      createCabin(data, {
+        onSuccess: () => {
+          reset();
+          onCloseModal?.();
+        },
+      }); //{ ...data, image: data.image }
     }
   };
 
   return (
-    <Form type="form" onSubmit={handleSubmit(onSubmit)}>
+    <Form
+      onSubmit={handleSubmit(onSubmit)}
+      type={onCloseModal ? 'modal' : 'form'}
+    >
       <FormRow label="Cabin name" error={errors?.name?.message}>
         <Input
           type="text"
@@ -117,7 +136,11 @@ function CreateCabinForm({ cabinToEdit }: { cabinToEdit?: CabinType }) {
 
       {/* <FormRow> */}
       {/* type is an HTML attribute! */}
-      <Button variation="secondary" type="reset">
+      <Button
+        variation="secondary"
+        type="reset"
+        onClick={() => onCloseModal?.()}
+      >
         Cancel
       </Button>
       <Button disabled={isWorking}>
