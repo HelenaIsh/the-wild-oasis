@@ -21,6 +21,33 @@ export default function CabinTable() {
     if (filter === 'with-discount') return cabin.discount > 0;
     return true;
   });
+  const sortBy = searchParams.get('sortBy') || '';
+  if (sortBy === 'name-asc') {
+    filteredCabins.sort((a: CabinType, b: CabinType) =>
+      a.name.localeCompare(b.name)
+    );
+  } else if (sortBy === 'name-desc') {
+    filteredCabins.sort((a: CabinType, b: CabinType) =>
+      b.name.localeCompare(a.name)
+    );
+  } else if (sortBy === 'regularPrice-asc') {
+    filteredCabins.sort(
+      (a: CabinType, b: CabinType) => a.regularPrice - b.regularPrice
+    );
+  } else if (sortBy === 'regularPrice-desc') {
+    filteredCabins.sort(
+      (a: CabinType, b: CabinType) => b.regularPrice - a.regularPrice
+    );
+  } else if (sortBy === 'maxCapacity-asc') {
+    filteredCabins.sort(
+      (a: CabinType, b: CabinType) => a.maxCapacity - b.maxCapacity
+    );
+  } else if (sortBy === 'maxCapacity-desc') {
+    filteredCabins.sort(
+      (a: CabinType, b: CabinType) => b.maxCapacity - a.maxCapacity
+    );
+  }
+
   return (
     <Menus>
       <Table columns="0.6fr 1.8fr 2.2fr 1fr 1fr 1fr">
