@@ -98,7 +98,7 @@ function Body<T>({
   data,
   render,
 }: {
-  data: [];
+  data: T[];
   render: (item: T) => React.ReactNode;
 }) {
   if (!data) return <Empty>No data available</Empty>;
