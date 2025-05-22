@@ -35,18 +35,16 @@ const FilterButton = styled.button<{ active?: boolean }>`
   }
 `;
 
-type FilterType = 'all' | 'no-discount' | 'with-discount';
-
-export default function Filter({
-  filterFileld,
+export default function Filter<T extends string>({
+  filterField,
   options,
 }: {
-  filterFileld: string;
-  options: { value: FilterType; label: string }[];
+  filterField: string;
+  options: { value: T; label: string }[];
 }) {
   const [searchParams, setSearchParams] = useSearchParams();
-  const handleClick = (value: FilterType) => {
-    searchParams.set(filterFileld, value);
+  const handleClick = (value: T) => {
+    searchParams.set(filterField, value);
     setSearchParams(searchParams);
   };
   return (
@@ -55,8 +53,8 @@ export default function Filter({
         <FilterButton
           key={option.value}
           onClick={() => handleClick(option.value)}
-          active={searchParams.get(filterFileld) === option.value}
-          disabled={searchParams.get(filterFileld) === option.value}
+          active={searchParams.get(filterField) === option.value}
+          disabled={searchParams.get(filterField) === option.value}
         >
           {option.label}
         </FilterButton>

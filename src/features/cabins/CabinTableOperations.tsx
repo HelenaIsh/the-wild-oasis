@@ -2,11 +2,13 @@ import Filter from '../../ui/Filter';
 import SortBy from '../../ui/SortBy';
 import TableOperations from '../../ui/TableOperations';
 
+type FilterCabinType = 'all' | 'no-discount' | 'with-discount';
+
 export default function CabinTableOperations() {
   return (
     <TableOperations>
-      <Filter
-        filterFileld="discount"
+      <Filter<FilterCabinType>
+        filterField="discount"
         options={[
           { value: 'all', label: 'All' },
           { value: 'no-discount', label: 'No discount' },
