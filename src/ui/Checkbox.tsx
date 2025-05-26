@@ -36,7 +36,7 @@ function Checkbox({
   checked: boolean;
   onChange: () => void;
   disabled?: boolean;
-  id: string;
+  id?: string;
   children: ReactNode;
 }) {
   return (
