@@ -103,7 +103,7 @@ export default function Menus({ children }: { children: React.ReactNode }) {
   );
 }
 
-function Toggle({ id }: { id: string }) {
+function Toggle({ id }: { id?: string }) {
   const { openId, open, close, setPosition } = useContext(MenusContext);
 
   const handleClick = (e: React.MouseEvent) => {
@@ -121,7 +121,7 @@ function Toggle({ id }: { id: string }) {
 
     if (openId === id) {
       close?.();
-    } else {
+    } else if (id) {
       open?.(id);
     }
   };
@@ -133,7 +133,7 @@ function Toggle({ id }: { id: string }) {
   );
 }
 
-function List({ id, children }: { id: string; children: React.ReactNode }) {
+function List({ id, children }: { id?: string; children: React.ReactNode }) {
   const { openId, position, close } = useContext(MenusContext);
   const ref = useOutsideClick<HTMLUListElement>(close);
   if (openId !== id) return null;

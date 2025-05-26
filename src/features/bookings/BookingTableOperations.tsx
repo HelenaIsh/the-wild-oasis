@@ -2,7 +2,9 @@ import SortBy from '../../ui/SortBy';
 import Filter from '../../ui/Filter';
 import TableOperations from '../../ui/TableOperations';
 
-type FilterBookingType = 'all' | 'checked-out' | 'checked-in' | 'unconfirmed';
+export type BookingStatus = 'checked-out' | 'checked-in' | 'unconfirmed';
+
+type FilterBookingType = 'all' | BookingStatus;
 
 function BookingTableOperations() {
   return (

@@ -2,6 +2,14 @@ import { PAGE_SIZE } from '../utils/constants';
 import { getToday } from '../utils/helpers';
 import supabase from './supabase';
 
+export interface GuestType {
+  fullName: string;
+  email: string;
+  country: string;
+  countryFlag: string;
+  nationalID: string;
+}
+
 export interface Booking {
   id?: string;
   created_at?: string;
@@ -18,10 +26,7 @@ export interface Booking {
   observations?: string;
   cabinId: string;
   guestId: string;
-  guests: {
-    fullName: string;
-    email: string;
-  };
+  guests: GuestType;
   cabins: {
     name: string;
   };
@@ -67,7 +72,7 @@ export async function getBookings({
 
   return { data, count };
 }
-export async function getBooking(id: string) {
+export async function getBooking(id?: string) {
   const { data, error } = await supabase
     .from('bookings')
     .select('*, cabins(*), guests(*)')
