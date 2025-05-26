@@ -14,6 +14,9 @@ import Spinner from '../../ui/Spinner';
 import { useBooking } from './useBooking';
 import type { BookingStatus } from './BookingTableOperations';
 import { useCheckout } from '../check-in-out/useCheckout';
+import Modal from '../../ui/Modal';
+import ConfirmDelete from '../../ui/ConfirmDelete';
+import { useDeleteBooking } from './useDeleteBooking';
 
 const HeadingGroup = styled.div`
   display: flex;
@@ -25,6 +28,7 @@ function BookingDetail() {
   const navigate = useNavigate();
   const { booking, isLoading } = useBooking();
   const { checkout, isCheckingOut } = useCheckout();
+  const { deleteBooking, isDeleting } = useDeleteBooking();
 
   const moveBack = useMoveBack();
 
@@ -71,6 +75,24 @@ function BookingDetail() {
             Check out
           </Button>
         )}
+        <Modal>
+          <Modal.Open opens="delete">
+            <Button variation="danger">Delete booking</Button>
+          </Modal.Open>
+          <Modal.Window name="delete">
+            <ConfirmDelete
+              resourceName="booking"
+              onConfirm={() => {
+                deleteBooking(booking.id, {
+                  onSettled: () => {
+                    navigate(-1);
+                  },
+                });
+              }}
+              disabled={isDeleting}
+            />
+          </Modal.Window>
+        </Modal>
         <Button variation="secondary" onClick={moveBack}>
           Back
         </Button>
