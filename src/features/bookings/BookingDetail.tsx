@@ -13,6 +13,7 @@ import Spinner from '../../ui/Spinner';
 
 import { useBooking } from './useBooking';
 import type { BookingStatus } from './BookingTableOperations';
+import { useCheckout } from '../check-in-out/useCheckout';
 
 const HeadingGroup = styled.div`
   display: flex;
@@ -23,6 +24,7 @@ const HeadingGroup = styled.div`
 function BookingDetail() {
   const navigate = useNavigate();
   const { booking, isLoading } = useBooking();
+  const { checkout, isCheckingOut } = useCheckout();
 
   const moveBack = useMoveBack();
 
@@ -56,6 +58,17 @@ function BookingDetail() {
         {status === 'unconfirmed' && (
           <Button onClick={() => navigate(`/checkin/${booking.id}`)}>
             Check in
+          </Button>
+        )}
+        {status === 'checked-in' && (
+          <Button
+            // icon={<HiArrowUpOnSquare />}
+            onClick={() => {
+              checkout({ bookingId: booking.id });
+            }}
+            disabled={isCheckingOut}
+          >
+            Check out
           </Button>
         )}
         <Button variation="secondary" onClick={moveBack}>
