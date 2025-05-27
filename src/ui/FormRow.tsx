@@ -43,7 +43,7 @@ export default function FormRow({
   error,
 }: {
   label?: string;
-  children: ReactElement<{ id: string }>;
+  children: ReactElement<{ id?: string }>;
   error?: string;
 }) {
   return (
