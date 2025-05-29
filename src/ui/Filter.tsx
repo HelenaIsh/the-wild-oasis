@@ -11,12 +11,12 @@ const StyledFilter = styled.div`
   gap: 0.4rem;
 `;
 
-const FilterButton = styled.button<{ active?: boolean }>`
+const FilterButton = styled.button<{ $active: boolean }>`
   background-color: var(--color-grey-0);
   border: none;
 
   ${(props) =>
-    props.active &&
+    props.$active &&
     css`
       background-color: var(--color-brand-600);
       color: var(--color-brand-50);
@@ -56,7 +56,7 @@ export default function Filter<T extends string>({
         <FilterButton
           key={option.value}
           onClick={() => handleClick(option.value)}
-          active={searchParams.get(filterField) === option.value}
+          $active={searchParams.get(filterField) === option.value}
           disabled={searchParams.get(filterField) === option.value}
         >
           {option.label}
