@@ -1,22 +1,24 @@
-# Fast Pizza – React + Vite + react-router + redux
+# The Wild Oasis – React + Vite + react-router
 
-This is a simple application built as a learning project. It uses React (powered by Vite) and focuses on practicing the React Router data loading features and Redux Think for asynchronous actions.
+This is a full-featured React application built with a modern tech stack, focusing on efficient data fetching, state management, and UI styling. It integrates Supabase for backend services, React Query for server-state management, and styled-components for CSS-in-JS styling.
 
 ### 🧠 Project Goal
 
-The main purpose of this project was to gain hands-on experience with:
+The purpose of this project is to demonstrate:
 
-1. Fetching data from external APIs using React Router’s loader feature,
-2. Mutating data via React Router’s action feature, and
-3. Managing asynchronous data in Redux stores using Thunks.
+1. Real-time data handling with Supabase and React Query (TanStack Query).
+2. Form management via react-hook-form with validation.
+3. Error resilience using react-error-boundary.
+4. Visualizations powered by Recharts.
+5. UI/UX polish with react-hot-toast notifications and styled-components.
 
 ### 🛠️ Tech Stack
 
 • React + TypeScript
 • Vite
-• react-router-dom
+• react-router-dom (navigation)
+• React Query (server state)
 • Styled Components
-• React Query
 • Context API
 • React Hook Form
 
@@ -26,3 +28,8 @@ The main purpose of this project was to gain hands-on experience with:
 2.  Start the Vite dev server: `npm run dev`
 3.  Open your browser at http://localhost:5173 (or the port shown in your terminal).
 4.  Enter your name and order pizzas from menu
+
+📌 Notes
+Ensure environment variables for Supabase are configured (.env).
+
+React Query Devtools are included for debugging queries (@tanstack/react-query-devtools).
