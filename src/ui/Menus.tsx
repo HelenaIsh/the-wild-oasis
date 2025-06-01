@@ -107,6 +107,7 @@ function Toggle({ id }: { id?: string }) {
   const { openId, open, close, setPosition } = useContext(MenusContext);
 
   const handleClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
     const target = e.target as HTMLElement;
     const button = target.closest('button');
 
@@ -135,7 +136,7 @@ function Toggle({ id }: { id?: string }) {
 
 function List({ id, children }: { id?: string; children: React.ReactNode }) {
   const { openId, position, close } = useContext(MenusContext);
-  const ref = useOutsideClick<HTMLUListElement>(close);
+  const ref = useOutsideClick<HTMLUListElement>(close, false);
   if (openId !== id) return null;
   return createPortal(
     <StyledList position={position} ref={ref}>
