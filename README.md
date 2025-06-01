@@ -22,6 +22,10 @@ The purpose of this project is to demonstrate:
 • Context API
 • React Hook Form
 
+### Deploy
+
+https://the-wild-oasis-ish.netlify.app/
+
 ### ▶️ How to Run the Project
 
 1.  CLone the repo and run `npm install`
